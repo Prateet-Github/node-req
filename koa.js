@@ -10,7 +10,7 @@ app.use(async ctx => {
 const startServer = async () => {
   try {
     app.listen(env.KOA_PORT, () => {
-      console.log(`Koa server running on port ${env.KOA_PORT}`);
+      console.log(`Koa server is running on port ${env.KOA_PORT}`);
     });
   } catch (error) {
     console.error('Server startup error:', error);

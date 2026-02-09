@@ -10,7 +10,7 @@ app.get('/', (_req, res) => {
 const startServer = () => {
   try {
     app.listen(env.EXPRESS_PORT, () => {
-      console.log(`Express server running on port ${env.EXPRESS_PORT}`);
+      console.log(`Express server is running on port ${env.EXPRESS_PORT}`);
     });
     console.log('PORT =', env.EXPRESS_PORT);
 
