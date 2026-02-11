@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "dev": "nodemon fastify.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+ "scripts": {
+    "start:express": "NODE_ENV=production node express.js",
+    "start:koa": "NODE_ENV=production node koa.js",
+    "start:fastify": "NODE_ENV=production node fastify.js",
+
+    "start:all": "concurrently \"npm run start:express\" \"npm run start:koa\" \"npm run start:fastify\""
   },
   "keywords": [],
   "author": "",
@@ -18,6 +21,7 @@
     "koa": "^3.1.1"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "nodemon": "^3.1.11"
   }
 }

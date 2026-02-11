@@ -3,19 +3,15 @@ import env from './config/env.js';
 
 const app = new Koa();
 
-app.use(async ctx => {
-  ctx.body = 'Hello World';
+app.use(ctx => {
+  ctx.body = 'pong';
 });
 
-const startServer = async () => {
-  try {
-    app.listen(env.KOA_PORT, () => {
-      console.log(`Koa server is running on port ${env.KOA_PORT}`);
-    });
-  } catch (error) {
-    console.error('Server startup error:', error);
-    process.exit(1);
-  }
-};
+const server = app.listen(env.KOA_PORT, () => {
+  console.log(`Koa server is running on port ${env.KOA_PORT}`);
+});
 
-startServer();
+server.on('error', (err) => {
+  console.error('Error starting Koa server:', err);
+  process.exit(1);
+});
