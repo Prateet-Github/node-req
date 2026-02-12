@@ -8,7 +8,6 @@
     "start:express": "NODE_ENV=production node express.js",
     "start:koa": "NODE_ENV=production node koa.js",
     "start:fastify": "NODE_ENV=production node fastify.js",
-    "start":"node koa.js",
 
     "start:all": "concurrently \"npm run start:express\" \"npm run start:koa\" \"npm run start:fastify\""
   },
