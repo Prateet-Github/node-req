@@ -1,5 +1,23 @@
 import express from 'express';
 import env from './config/env.js';
+import cluster from 'cluster';
+import { availableParallelism } from 'os';
+
+const numCPUs = availableParallelism();
+
+if (cluster.isPrimary) {
+    console.log(`Primary ${process.pid} is running`);
+
+    for (let i = 0; i < numCPUs; i++) {
+      cluster.fork();
+    }
+
+    cluster.on('exit', (worker, code, signal) => {
+      console.log(`Worker ${worker.process.pid} died with code ${code} and signal ${signal}`);
+    });
+    
+}
+else{
 
 const app = express();
 
@@ -15,3 +33,6 @@ server.on('error', (err) => {
   console.error('Error starting Express server:', err);
   process.exit(1);
 });
+
+}
+
